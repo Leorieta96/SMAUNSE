@@ -1,0 +1,29 @@
+extends ./layout.jade
+block contenido
+  .container(style='padding-left:0')
+    .row
+      if !userAdmin
+        .col-auto.col-sm-auto.col-md-auto.col-lg-auto.col-xl-auto
+          include ./sidebarUser.jade
+        .col-10.col-sm-10.col-md-9.col-lg-9.col-xl-9
+          .card-columns
+            for item in items
+              .card.text-white.bg-dark.mb-3
+                img.card-img-top(src='/imagenes/#{item._id}.#{item.extension}', alt='...')
+                .card-body
+                  h4.card-title #{item.descripcionCorta}
+                  p.card-text.mb-2 #{item.descripcion}
+                  .text-right
+                    h5.card-title $#{item.precioUnitario}
+                  .text-center
+                    a.btn.btn-primary(href='#') Añadir a Carrito →
+      else
+        .col-auto.col-sm-auto.col-md-auto.col-lg-auto.col-xl-auto
+          .card-columns
+            for item in items
+              .card.text-white.bg-info.mb-3
+                img.card-img-top(src='/imagenes/#{item._id}.#{item.extension}', alt='...')
+                .card-body
+                  h5.card-title #{item.descripcionCorta}
+                  p.card-text #{item.descripcion}
+                  a.btn.btn-primary(href='#') Añadir a Carrito →

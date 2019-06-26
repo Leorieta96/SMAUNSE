@@ -1,0 +1,36 @@
+extends ../layout.jade
+block contenido
+    .container
+      .row.align-items-center
+        .col-2
+        .col-8
+            .card
+                .card-body
+                    form(action="/admin/rubros/#{rubro._id}?_method=PUT", method= "POST")
+                        fieldset(disabled='' style="display:none")
+                            .form-group
+                                label(for='id') Identificador
+                                input#disabledTextInput.form-control(type='text', name='_id', placeholder='Enter Descripcion', value="#{rubro._id}")
+                        .form-group
+                            label(for='descripcion') Descripcion
+                            input.form-control(type='text', name='descripcion', placeholder='Enter Descripcion', value="#{rubro.descripcion}")
+                        .form-group
+                            select.form-control.btn.btn-secondary.dropdown-toggle(name='servicio')
+                                option #{rubro.servicio.descripcion}
+                                for s in servicios
+                                    if s.descripcion != rubro.servicio.descripcion
+                                        option #{s.descripcion}
+                        .form-group
+                            if messageServicio.length > 0
+                                for msg in messageServicio
+                                    .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                        strong #{msg}
+                                        button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                            span(aria-hidden='true') &times;
+                        .form-group
+                            .row
+                                .col
+                                    button.btn.btn-primary(type='submit') Registrar Rubro
+                                .col.text-right
+                                    a.btn.btn-danger(href='/admin/rubros') Cancelar
+        .col-2

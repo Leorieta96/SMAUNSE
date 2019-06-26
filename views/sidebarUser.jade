@@ -1,0 +1,57 @@
+nav#sidebar
+    
+    .sidebar-header
+        h4 SMAUNSE
+    form(action="/search-articulos-filtros", method= "POST",onsubmit="copyValue(this, event);")
+        ul.list-unstyled.CTAs
+            p Filtros
+            li(style="display:none")
+                .form-group
+                    label(for='articulo')
+                    input#disabledTextInput.form-control(type='text', name='articulo', placeholder='Enter Descripcion')
+            li
+                select.form-control.form-control-sm.btn.btn-success(name='servicio',id='servicio', onchange="mostrarRubro()")
+                    option Servicio
+                    for s in servicios
+                        option #{s.descripcion}
+                .dropdown-divider
+            li
+                select.form-control.form-control-sm.btn.btn-success(name='rubro', id='rubroServicio')
+                    option Rubro
+                for s in servicios
+                    select.form-control.form-control-sm.btn.btn-success(name='rubro', id='rubro#{s.descripcion}', style="display:none;")
+                        option(selected="selected") Rubro
+                        for r in rubros
+                            if r.servicio.descripcion == s.descripcion
+                                option(value = "#{r._id}") #{r.descripcion}
+                .dropdown-divider
+            li
+                select.form-control.form-control-sm.btn.btn-success(name='marca')
+                    option Marca
+                    for m in marcas
+                        option(value = "#{m._id}") #{m.descripcion}
+                .dropdown-divider
+            li
+                .form-row
+                    p Monto
+                    .col
+                        input.form-control(type='number', placeholder='Min', name='montoMin')
+                    .col
+                        input.form-control(type='number', placeholder='Max', name='montoMax')
+            li
+                .row
+                    .col.align-self-start
+                    .col.align-self-center
+                    .col.align-self-end
+                        button.btn.btn-primary(type='submit') Filtar
+script(type='text/javascript').
+    function mostrarRubro() {
+        var x = document.getElementsByName("rubro");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        x[i].options[0].selected = 'selected';
+        x[i].style.display = "none";
+    }
+    var servicio = document.getElementById("servicio");
+    document.getElementById('rubro'+ servicio.value).style.display = "-webkit-inline-box";
+    }

@@ -1,0 +1,26 @@
+extends ../layout.jade
+block contenido
+  .container-fluid(style='padding-left:0')
+    .row
+      .col-auto.col-sm-auto.col-md-auto.col-lg-auto.col-xl-auto
+          include ../sidebarAdmin.jade
+      .col-11.col-sm-11.col-md-8.col-lg-9.col-xl-9
+        .card-columns.w-100
+          for s in servicios
+            .card.text-white.bg-info.mb-3.p-3(style='width: 18rem;')
+              .card-body
+                h5.card-title #{s.descripcion}
+                .row
+                  .col
+                    a.btn.btn-sm.btn-outline-light(href='/admin/servicio/#{s.id}') Editar
+                  .col
+                    form(action="/admin/servicios/#{s._id}?_method=DELETE", method="POST", name="form")
+                      input.btn.btn-sm.btn-outline-danger(type="submit" value="Eliminar", onclick='myFunction(event)')
+          script.
+              function myFunction(e) {
+              if (confirm("¿Está seguro que desea eliminar el servicio?")) {
+                  document.from.submit();
+                }else{
+                  e.preventDefault();
+                }
+              }

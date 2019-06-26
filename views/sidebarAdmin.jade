@@ -1,0 +1,26 @@
+#sidebar-wrapper.bg-light.border-right
+    .sidebar-heading #{href}
+    .list-group.list-group-flush
+        .list-group-item.list-group-item-action
+            .container
+                .row
+                    .col-1
+                    .col
+                        a.btn.btn-outline-danger.ml-auto(href='/admin/#{href}/add-#{href}') Agregar #{href}
+                    .col-1
+        .list-group-item.list-group-item-action
+            form.form.my-2.my-lg-0(action='/admin/#{href}/search-#{href}', method= "POST")
+                .form-group
+                    .container
+                            .row
+                                .col-1
+                                .col-auto
+                                    input.form-control(type='search', name='search', placeholder='Buscar')
+                                .col-1
+                .form-group
+                    .container
+                        .row
+                            .col-1
+                            .col-auto
+                                button.btn.btn-outline-info.my-2.my-sm-0(type='submit') Buscar
+                            .col-1

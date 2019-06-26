@@ -1,0 +1,29 @@
+extends ./layout.jade
+block contenido
+    .container
+        .row
+            .col-sm-3
+            .col-sm-6
+                .card
+                    .card-body
+                        form(action="/login", method= "POST")
+                            .form-group
+                                label(for='DNI') N° de Documnto
+                                input.form-control(type='text', name='dni', placeholder='Solo números')
+                            .form-group
+                                label(for='contrasenia') Contraseña
+                                input.form-control(type='password', name='password', placeholder='contraseñaejemplo')
+                            .form-group
+                                if messageLogin.length > 0
+                                    for msg in messageLogin
+                                        .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                            strong #{msg}
+                                            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                                span(aria-hidden='true') &times;
+                            .form-group
+                                .row
+                                    .col-auto
+                                        a.btn.btn-outline-info(href='/signup') Crear cuenta
+                                    .col-auto.ml-auto
+                                        button.btn.btn-primary(type='submit') Iniciar Sesion
+            .col-sm-3

@@ -1,0 +1,37 @@
+extends ../layout.jade
+block contenido
+    .container
+      .row
+        .col-2
+        .col-8
+            .card
+                .card-body
+                    form(action="/admin/add-item", method= "POST", enctype="multipart/form-data")
+                        .form-group
+                            label(for='descripcion') Descripcion
+                            input.form-control(type='text', name='descripcion', placeholder='Enter Descripcion')
+                        .form-group
+                            label(for='descripcionCorta') Descripcion Corta
+                            input.form-control(type='text', name='descripcionCorta', placeholder='descripcionCorta')
+                        .form-group
+                            label(for='precioUnitario') Precio Unitario
+                            input.form-control(type='number', name='precioUnitario', placeholder='00000')
+                        .form-group
+                            label(for='stock') Stock
+                            input.form-control(type='number' step="0.01", name='stock', placeholder='000')
+                        .form-group
+                            label(for='stockMinimo') Stock Minimo
+                            input.form-control(type='number', name='stockMinimo', placeholder='000')
+                        .form-group
+                            select.form-control.btn.btn-secondary.dropdown-toggle(name='marca')
+                                for m in marcas
+                                    option #{m.descripcion}
+                        .form-group
+                            select.form-control.btn.btn-secondary.dropdown-toggle(name='rubro')
+                                for r in rubros
+                                    option #{r.descripcion}
+                        .form-group
+                            label(for="archivo") Imagen
+                            input(type= "file", name="archivo", id="archivo" , class="form-control")
+                        button.btn.btn-primary(type='submit') Registrar Articulo
+        .col-2

@@ -1,0 +1,51 @@
+extends ./layout.jade
+block contenido
+    .container
+            .row
+                .col-sm-3
+                .col-sm-6
+                    .card
+                        .card-body
+                            form(action="/add-user", method= "POST", onsubmit="convierteMd5(this, event);")
+                                .form-group
+                                    label(for='DNI') N° de Documnto
+                                    input.form-control(type='text', name='dni', placeholder='Enter DNI')
+                                .form-group
+                                    label(for='nombreApellido') Nombre y Apellido
+                                    input.form-control(type='text', name='nombreApellido', placeholder='Nombre Apellido')
+                                .form-group
+                                    label(for='numAfiliado') Número de Afiliado
+                                    input.form-control(type='number', name='nAfiliado', placeholder='00000')
+                                .form-group
+                                    label(for='numTelefono') Número Telefono
+                                    input.form-control(type='number', name='telefono', placeholder='385 537963')
+                                .form-group
+                                    label(for='Email') Email
+                                    input.form-control(type='email', name='correo', placeholder='example@example.com')
+                                .form-group
+                                    label(for='contrasenia') Contraseña
+                                    input.form-control(type='password', name='password', placeholder='password')
+                                .form-group
+                                    if messageSignup.length > 0
+                                        for msg in messageSignup
+                                            .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                                strong #{msg}
+                                                button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                                    span(aria-hidden='true') &times;
+                                    .alert.alert-warning.alert-dismissible.fade.show(role='alert' id='caracter' style="display:none")
+                                        strong Ingrese contraseña con más de 7 caracteres
+                                        button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                            span(aria-hidden='true') &times;
+                                button.btn.btn-primary.ml-auto(type='submit') Registrarse
+
+                    script.
+                        function convierteMd5(form, e){
+                            if(form.password.value.length() < 8){
+                                hash = hex_md5(form.password.value); /* MD5 */
+                                form.password.value = hash;
+                            }else{
+                                document.getElementById('caracter').style.display = "-webkit-inline-box";
+                                e.preventDefault();
+                            }
+                        }
+                .col-sm-3

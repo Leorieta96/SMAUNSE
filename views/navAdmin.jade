@@ -1,0 +1,27 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.flex-column.flex-md-row.bd-navbar.sticky-top
+    .container
+        a.navbar-brand(href='/') Home
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo02', aria-controls='navbarTogglerDemo02', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarTogglerDemo02.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+                li.nav-item.active
+                    a.nav-link(href='/admin/rubros') Rubros
+                        span.sr-only (current)
+                li.nav-item.active
+                    a.nav-link(href='/admin/servicios') Servicios
+                        span.sr-only (current)
+                li.nav-item.active
+                    a.nav-link(href='/admin/marcas') Marcas
+                        span.sr-only (current)
+            ul.navbar-nav.ml-auto
+                li.nav-item
+                    .dropdown
+                        button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            | #{UserName}
+                        .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                            if id != undefined
+                                a.dropdown-item(href='#', aria-disabled='true') Mi cuenta
+                                a.dropdown-item(href='/logout', aria-disabled='true') Cerrar Sesion
+                            else
+                                a.dropdown-item(href='/login', aria-disabled='true') Iniciar Sesion

@@ -1,0 +1,21 @@
+extends ../layout.jade
+block contenido
+    .container
+        .row
+            .col-2
+            .col-8
+                .card
+                    .card-body
+                        form(action="/admin/marcas/add-marca", method = "POST")
+                            .form-group
+                                label(for='descripcion') Descripcion
+                                input.form-control(type='text', name ='descripcion', placeholder='Enter Descripcion')
+                            .form-group
+                                if messageMarca.length > 0
+                                    for msg in messageMarca
+                                        .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                            strong #{msg}
+                                            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                                span(aria-hidden='true') &times;
+                            button.btn.btn-primary(type='submit') Registrar Marca
+            .col-2
