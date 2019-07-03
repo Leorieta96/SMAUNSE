@@ -2,14 +2,14 @@ extends ../layout.jade
 block contenido
     .container
         .row
-            .col-2
-            .col-8
-                .card
+            .col-sm-9.col-md-7.col-lg-5.mx-auto
+                .card.card-signin.my-5
                     .card-body
-                        form(action="/admin/marcas/add-marca", method = "POST")
-                            .form-group
-                                label(for='descripcion') Descripcion
-                                input.form-control(type='text', name ='descripcion', placeholder='Enter Descripcion')
+                        h5.card-title.text-center Agregar Marca
+                        form.form-signin(action="/admin/marcas/add-marca", method = "POST")
+                            .form-label-group
+                                input#inputDescripcion.form-control(type='text', name ='descripcion', placeholder='Enter Descripcion', required, autofocus)
+                                label(for='descripcion', onclick="document.getElementById('inputDescripcion').focus();") Descripcion
                             .form-group
                                 if messageMarca.length > 0
                                     for msg in messageMarca
@@ -17,5 +17,4 @@ block contenido
                                             strong #{msg}
                                             button.close(type='button', data-dismiss='alert', aria-label='Close')
                                                 span(aria-hidden='true') &times;
-                            button.btn.btn-primary(type='submit') Registrar Marca
-            .col-2
+                            button.btn.btn-lg.btn-facebook.btn-block.text-uppercase(type='submit') Registrar Marca

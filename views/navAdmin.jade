@@ -14,14 +14,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.flex-column.flex-md-row.bd-navba
                 li.nav-item.active
                     a.nav-link(href='/admin/marcas') Marcas
                         span.sr-only (current)
-            ul.navbar-nav.ml-auto
-                li.nav-item
-                    .dropdown
-                        button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | #{UserName}
-                        .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                            if id != undefined
-                                a.dropdown-item(href='#', aria-disabled='true') Mi cuenta
-                                a.dropdown-item(href='/logout', aria-disabled='true') Cerrar Sesion
-                            else
-                                a.dropdown-item(href='/login', aria-disabled='true') Iniciar Sesion
+            ul.navbar-nav
+                li.nav-item.dropdown
+                    a#navbarDropdown.dropdown-toggle.btn.btn-outline-success(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{UserName}
+                    .dropdown-menu.dropdown-menu-right.animate.slideIn(aria-labelledby='navbarDropdown')
+                        if id != undefined
+                            a.dropdown-item(href='#', aria-disabled='true') Mi cuenta
+                            a.dropdown-item(href='/logout', aria-disabled='true') Cerrar Sesion
+                        else
+                            a.dropdown-item(href='/login', aria-disabled='true') Iniciar Sesion

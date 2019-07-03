@@ -139,8 +139,9 @@ router.post("/search-articulos-filtros", async(req,res)=>{
                     $diacriticSensitive: false},
                 rubro: idRubro,
                 marca: idMarca,
-                precioUnitario: { $gte: montoMin },
-                precioUnitario: { $lte: montoMax }
+                $and:[
+                    {precioUnitario:{$gte:montoMin}},
+                    {precioUnitario:{$lte:montoMax}}]
                 })
                 .exec((err,articulos)=>{
                     if(!err){
@@ -164,11 +165,12 @@ router.post("/search-articulos-filtros", async(req,res)=>{
                     $caseSensitive: false,
                     $diacriticSensitive: false},
                 rubro: idRubro,
-                precioUnitario: { $gte: montoMin },
-                precioUnitario: { $lte: montoMax }
+                $and:[
+                    {precioUnitario:{$gte:montoMin}},
+                    {precioUnitario:{$lte:montoMax}}]
                 })
                 .exec((err,articulos)=>{
-                    console.log("todoooooooooooooooooooooooooo menos marca")
+                    console.log("todo menos marca")
                     if(!err){
                         res.render("index", {
                             id: req.session.user_id,
@@ -191,8 +193,9 @@ router.post("/search-articulos-filtros", async(req,res)=>{
                 $caseSensitive: false,
                 $diacriticSensitive: false},
             marca: idMarca,
-            precioUnitario: { $gte: montoMin },
-            precioUnitario: { $lte: montoMax }
+            $and:[
+                {precioUnitario:{$gte:montoMin}},
+                {precioUnitario:{$lte:montoMax}}]
             })
             .exec((err,articulos)=>{
                 if(!err){
@@ -216,8 +219,9 @@ router.post("/search-articulos-filtros", async(req,res)=>{
                 $search: req.body.articulo,
                 $caseSensitive: false,
                 $diacriticSensitive: false},
-            precioUnitario: { $gte: montoMin },
-            precioUnitario: { $lte: montoMax }
+                $and:[
+                    {precioUnitario:{$gte:montoMin}},
+                    {precioUnitario:{$lte:montoMax}}]
             })
             .exec((err,articulos)=>{
                 if(!err){

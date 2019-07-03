@@ -6,7 +6,7 @@ block contenido
         .col-8
             .card
                 .card-body
-                    form(action="/admin/add-item", method= "POST", enctype="multipart/form-data")
+                    form.form-signin(action="/admin/add-item", method= "POST", enctype="multipart/form-data")
                         .form-group
                             label(for='descripcion') Descripcion
                             input.form-control(type='text', name='descripcion', placeholder='Enter Descripcion')

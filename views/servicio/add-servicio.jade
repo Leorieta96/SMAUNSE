@@ -1,21 +1,20 @@
 extends ../layout.jade
 block contenido
     .container
-      .row.align-items-center
-        .col-2
-        .col-8
-            .card
-                .card-body
-                    form(action="/admin/servicios/add-servicio", method= "POST")
-                        .form-group
-                            label(for='descripcion') Descripcion
-                            input.form-control(type='text', name='descripcion', placeholder='Enter Descripcion')
-                        .form-group
-                            if messageServicio.length > 0
-                                for msg in messageServicio
-                                    .alert.alert-warning.alert-dismissible.fade.show(role='alert')
-                                        strong #{msg}
-                                        button.close(type='button', data-dismiss='alert', aria-label='Close')
-                                            span(aria-hidden='true') &times;
-                        button.btn.btn-primary(type='submit') Registrar Servicio
-        .col-2
+      .row
+        .col-sm-9.col-md-7.col-lg-5.mx-auto
+                .card.card-signin.my-5
+                    .card-body
+                        h5.card-title.text-center Agregar Servicio
+                        form.form-signin(action="/admin/servicios/add-servicio", method= "POST")
+                            .form-label-group
+                                input#inpuntDescripcion.form-control(type='text', name='descripcion', placeholder='Enter Descripcion', required, autofocus)
+                                label(for='descripcion', onclick="document.getElementById('inpuntDescripcion').focus();") Descripcion
+                            .form-label-group
+                                if messageServicio.length > 0
+                                    for msg in messageServicio
+                                        .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                            strong #{msg}
+                                            button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                                span(aria-hidden='true') &times;
+                            button.btn.btn-lg.btn-facebook.btn-block.text-uppercase(type='submit') Registrar Servicio

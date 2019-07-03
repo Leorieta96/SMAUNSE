@@ -4,21 +4,19 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.flex-column.flex-md-row.bd-navba
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo02', aria-controls='navbarTogglerDemo02', aria-expanded='false', aria-label='Toggle navigation')
             span.navbar-toggler-icon
         #navbarTogglerDemo02.collapse.navbar-collapse
-            ul.navbar-nav.mr-auto.mt-2.mt-lg-0
             form.form-inline.my-2.my-lg-0(action='/search-articulos', method= "POST", name='searchForm')
                 input.form-control.mr-sm-2(type='search', name='search', placeholder='Buscar', id='search', value = search)
                 button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
-            ul.navbar-nav.ml-auto
+            ul.navbar-nav.ml-auto(style='margin-left:0px')
+                a.navbar-brand(href='#')
+                    img.d-inline-block.align-top(src='/imagenes/baseline_shopping_cart_white_18dp.png', alt='')
+            ul.navbar-nav
                 li.nav-item
                     if id != undefined
                         .dropdown
-                            button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                | #{UserName}
-                            .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                                    a.dropdown-item(href='#', aria-disabled='true') Mi cuenta
-                                    a.dropdown-item(href='/logout', aria-disabled='true') Cerrar Sesion
+                            a#navbarDropdown.dropdown-toggle.btn.btn-outline-success(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") #{UserName}
+                            .dropdown-menu.dropdown-menu-right.animate.slideIn(aria-labelledby='dropdownMenuButton')
+                                a.dropdown-item(href='#', aria-disabled='true') Mi cuenta
+                                a.dropdown-item(href='/logout', aria-disabled='true') Cerrar Sesion
                     else
                         a.nav-link(href='/login', aria-disabled='true') Iniciar Sesion
-            ul.navbar-nav.ml-auto
-                a.navbar-brand(href='#')
-                    img.d-inline-block.align-top(src='/imagenes/baseline_shopping_cart_white_18dp.png', alt='')

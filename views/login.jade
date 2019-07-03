@@ -2,28 +2,27 @@ extends ./layout.jade
 block contenido
     .container
         .row
-            .col-sm-3
-            .col-sm-6
-                .card
+            .col-sm-9.col-md-7.col-lg-5.mx-auto
+                .card.card-signin.my-5
                     .card-body
-                        form(action="/login", method= "POST")
-                            .form-group
-                                label(for='DNI') N° de Documnto
-                                input.form-control(type='text', name='dni', placeholder='Solo números')
-                            .form-group
-                                label(for='contrasenia') Contraseña
-                                input.form-control(type='password', name='password', placeholder='contraseñaejemplo')
-                            .form-group
-                                if messageLogin.length > 0
-                                    for msg in messageLogin
-                                        .alert.alert-warning.alert-dismissible.fade.show(role='alert')
-                                            strong #{msg}
-                                            button.close(type='button', data-dismiss='alert', aria-label='Close')
-                                                span(aria-hidden='true') &times;
-                            .form-group
-                                .row
-                                    .col-auto
-                                        a.btn.btn-outline-info(href='/signup') Crear cuenta
-                                    .col-auto.ml-auto
-                                        button.btn.btn-primary(type='submit') Iniciar Sesion
-            .col-sm-3
+                        h5.card-title.text-center Sign In
+                        form.form-signin(action="/login", method= "POST", onsubmit="convierteMd5(this, event);")
+                            .form-label-group
+                                input#inputEmail.form-control(type='text', placeholder='N° de Documento', name='dni', required, autofocus)
+                                label(for='DNI', onclick="document.getElementById('inputEmail').focus();") N° de Documento
+                            .form-label-group
+                                input#inputPassword.form-control(type='password', placeholder='password' name='password', required)
+                                label(for='contrasenia', onclick="document.getElementById('inputPassword').focus();") Contraseña
+                            .form-label-group
+                                        if messageLogin.length > 0
+                                            for msg in messageLogin
+                                                .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                                                    strong #{msg}
+                                                    button.close(type='button', data-dismiss='alert', aria-label='Close')
+                                                        span(aria-hidden='true') &times;
+                            .custom-control.custom-checkbox.mb-3
+                                input#customCheck1.custom-control-input(type='checkbox')
+                                label.custom-control-label(for='customCheck1') Remember password
+                            button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type='submit') Iniciar Sesion
+                            hr.my-4
+                            a.btn.btn-lg.btn-google.btn-block.text-uppercase(href='/signup') Crear cuenta

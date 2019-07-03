@@ -12,7 +12,7 @@ function htmlbodyHeightUpdate(){
         $('body').height(Math.max(height1,height3,height2));
     }
 }
-$(document).ready(function () {
+$('document').ready(function () {
     htmlbodyHeightUpdate()
     $( window ).resize(function() {
         htmlbodyHeightUpdate()

@@ -15,10 +15,6 @@ const Rubro = require("./models/rubro").Rubro;
 const Marca = require("./models/marca").Marca;
 const ordenar = require("./middleware/function");
 
-
-
-
-
 var methodOverride = require("method-override");
 
 var app = express();
